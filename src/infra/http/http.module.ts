@@ -13,6 +13,7 @@ import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases
 import { AuthenticateInstructorUseCase } from '@/domain/forum/application/use-cases/instructor/authenticate-instructor'
 import { CryptographyModule } from '../cryptography/cryptography.module'
 import { AuthenticateInstructorController } from './controllers/instructor/authenticate-instructor.controller'
+import { CreateAccountInstructorController } from './controllers/instructor/create-account-instructor.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -20,6 +21,7 @@ import { AuthenticateInstructorController } from './controllers/instructor/authe
     CreateAccountStudentController,
     AuthenticateStudentController,
     AuthenticateInstructorController,
+    CreateAccountInstructorController,
     CreateQuestionController,
     FetchRecentQuestionsController,
   ],
