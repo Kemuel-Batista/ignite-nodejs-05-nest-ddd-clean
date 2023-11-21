@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common'
 
-import { CreateQuestionController } from './controllers/create-question.controller'
-import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
 import { DatabaseModule } from '../database/database.module'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/question/create-question'
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/question/fetch-recent-questions'
@@ -16,6 +14,8 @@ import { AuthenticateInstructorController } from './controllers/instructor/authe
 import { CreateAccountInstructorController } from './controllers/instructor/create-account-instructor.controller'
 import { GetQuestionBySlugController } from './controllers/question/get-question-by-slug.controller'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/question/get-question-by-slug'
+import { FetchRecentQuestionsController } from './controllers/question/fetch-recent-questions.controller'
+import { CreateQuestionController } from './controllers/question/create-question.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
