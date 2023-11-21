@@ -26,6 +26,8 @@ import { EditAnswerController } from './controllers/answer/edit-answer.controlle
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/answer/edit-answer'
 import { DeleteAnswerController } from './controllers/answer/delete-answer.controller'
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/answer/delete-answer'
+import { FetchQuestionAnswersController } from './controllers/answer/fetch-question-answers.controller'
+import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/answer/fetch-question-answers'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -42,6 +44,7 @@ import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/answer
     AnswerQuestionController,
     EditAnswerController,
     DeleteAnswerController,
+    FetchQuestionAnswersController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -56,6 +59,7 @@ import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/answer
     AnswerQuestionUseCase,
     EditAnswerUseCase,
     DeleteAnswerUseCase,
+    FetchQuestionAnswersUseCase,
   ],
 })
 export class HttpModule {}
