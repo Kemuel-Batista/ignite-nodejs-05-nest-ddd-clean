@@ -14,6 +14,8 @@ import { AuthenticateInstructorUseCase } from '@/domain/forum/application/use-ca
 import { CryptographyModule } from '../cryptography/cryptography.module'
 import { AuthenticateInstructorController } from './controllers/instructor/authenticate-instructor.controller'
 import { CreateAccountInstructorController } from './controllers/instructor/create-account-instructor.controller'
+import { GetQuestionBySlugController } from './controllers/question/get-question-by-slug.controller'
+import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/question/get-question-by-slug'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -24,6 +26,7 @@ import { CreateAccountInstructorController } from './controllers/instructor/crea
     CreateAccountInstructorController,
     CreateQuestionController,
     FetchRecentQuestionsController,
+    GetQuestionBySlugController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -32,6 +35,7 @@ import { CreateAccountInstructorController } from './controllers/instructor/crea
     RegisterInstructorUseCase,
     AuthenticateStudentUseCase,
     AuthenticateInstructorUseCase,
+    GetQuestionBySlugUseCase,
   ],
 })
 export class HttpModule {}
