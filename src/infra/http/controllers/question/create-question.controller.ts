@@ -1,9 +1,9 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt.strategy'
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/question/create-question'
+import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
