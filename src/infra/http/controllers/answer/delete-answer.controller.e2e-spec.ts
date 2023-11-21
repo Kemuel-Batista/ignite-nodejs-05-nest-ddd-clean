@@ -20,7 +20,7 @@ describe('Delete answer (E2E)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory, AnswerFactory],
+      providers: [StudentFactory, AnswerFactory, QuestionFactory],
     }).compile()
 
     app = moduleRef.createNestApplication()
