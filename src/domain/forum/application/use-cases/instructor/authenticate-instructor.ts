@@ -1,5 +1,4 @@
 import { Either, failure, success } from '@/core/either'
-import { Injectable } from '@nestjs/common'
 import { InstructorsRepository } from '../../repositories/instructors-repository'
 import { HashComparer } from '../../cryptography/hash-comparer'
 import { Encrypter } from '../../cryptography/encrypter'
@@ -17,7 +16,6 @@ type AuthenticateInstructorUseCaseResponse = Either<
   }
 >
 
-@Injectable()
 export class AuthenticateInstructorUseCase {
   constructor(
     private instructorsRepository: InstructorsRepository,

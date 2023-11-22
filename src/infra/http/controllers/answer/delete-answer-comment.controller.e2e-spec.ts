@@ -17,7 +17,6 @@ describe('Delete answer comment (E2E)', () => {
   let questionFactory: QuestionFactory
   let answerFactory: AnswerFactory
   let answerCommentFactory: AnswerCommentFactory
-
   let jwt: JwtService
 
   beforeAll(async () => {
@@ -36,13 +35,14 @@ describe('Delete answer comment (E2E)', () => {
     prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
+    answerFactory = moduleRef.get(AnswerFactory)
     answerCommentFactory = moduleRef.get(AnswerCommentFactory)
     jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
 
-  test('[DELETE]/answers/comments/:id', async () => {
+  test('[DELETE] /answers/comments/:id', async () => {
     const user = await studentFactory.makePrismaStudent()
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
@@ -52,8 +52,8 @@ describe('Delete answer comment (E2E)', () => {
     })
 
     const answer = await answerFactory.makePrismaAnswer({
-      authorId: user.id,
       questionId: question.id,
+      authorId: user.id,
     })
 
     const answerComment = await answerCommentFactory.makePrismaAnswerComment({
@@ -64,7 +64,7 @@ describe('Delete answer comment (E2E)', () => {
     const answerCommentId = answerComment.id.toString()
 
     const response = await request(app.getHttpServer())
-      .delete(`/questions/comments/${answerCommentId}`)
+      .delete(`/answers/comments/${answerCommentId}`)
       .set('Authorization', `Bearer ${accessToken}`)
 
     expect(response.statusCode).toBe(204)

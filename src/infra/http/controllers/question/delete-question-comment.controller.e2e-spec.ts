@@ -21,7 +21,12 @@ describe('Delete question comment (E2E)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory, QuestionFactory, AnswerFactory],
+      providers: [
+        StudentFactory,
+        QuestionFactory,
+        AnswerFactory,
+        QuestionCommentFactory,
+      ],
     }).compile()
 
     app = moduleRef.createNestApplication()
