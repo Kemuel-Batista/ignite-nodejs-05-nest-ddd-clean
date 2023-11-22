@@ -20,16 +20,16 @@ describe('Delete answer (E2E)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory, AnswerFactory, QuestionFactory],
+      providers: [StudentFactory, QuestionFactory, AnswerFactory],
     }).compile()
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     answerFactory = moduleRef.get(AnswerFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
@@ -53,7 +53,6 @@ describe('Delete answer (E2E)', () => {
     const response = await request(app.getHttpServer())
       .delete(`/answers/${answerId}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send()
 
     expect(response.statusCode).toBe(204)
 

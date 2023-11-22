@@ -23,10 +23,10 @@ describe('Fetch question answers (E2E)', () => {
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     answerFactory = moduleRef.get(AnswerFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
@@ -41,12 +41,12 @@ describe('Fetch question answers (E2E)', () => {
     })
 
     await Promise.all([
-      await answerFactory.makePrismaAnswer({
+      answerFactory.makePrismaAnswer({
         authorId: user.id,
         questionId: question.id,
         content: 'Answer 01',
       }),
-      await answerFactory.makePrismaAnswer({
+      answerFactory.makePrismaAnswer({
         authorId: user.id,
         questionId: question.id,
         content: 'Answer 02',

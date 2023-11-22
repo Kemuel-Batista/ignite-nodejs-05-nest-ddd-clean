@@ -23,10 +23,10 @@ describe('Edit question (E2E)', () => {
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })

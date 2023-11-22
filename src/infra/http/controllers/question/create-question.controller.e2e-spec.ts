@@ -21,9 +21,9 @@ describe('Create question (E2E)', () => {
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })

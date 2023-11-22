@@ -21,9 +21,9 @@ describe('Fetch recent questions (E2E)', () => {
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
@@ -34,11 +34,11 @@ describe('Fetch recent questions (E2E)', () => {
     const accessToken = jwt.sign({ sub: user.id.toString() })
 
     await Promise.all([
-      await questionFactory.makePrismaQuestion({
+      questionFactory.makePrismaQuestion({
         authorId: user.id,
         title: 'Question 01',
       }),
-      await questionFactory.makePrismaQuestion({
+      questionFactory.makePrismaQuestion({
         authorId: user.id,
         title: 'Question 02',
       }),
