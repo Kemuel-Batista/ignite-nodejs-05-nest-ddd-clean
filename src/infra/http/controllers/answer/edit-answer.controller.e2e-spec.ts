@@ -25,11 +25,11 @@ describe('Edit answer (E2E)', () => {
 
     app = moduleRef.createNestApplication()
 
-    jwt = moduleRef.get(JwtService)
     prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     answerFactory = moduleRef.get(AnswerFactory)
+    jwt = moduleRef.get(JwtService)
 
     await app.init()
   })
@@ -59,12 +59,12 @@ describe('Edit answer (E2E)', () => {
 
     expect(response.statusCode).toBe(204)
 
-    const questionOnDatabase = await prisma.question.findFirst({
+    const answerOnDatabase = await prisma.answer.findFirst({
       where: {
         content: 'New answer content',
       },
     })
 
-    expect(questionOnDatabase).toBeTruthy()
+    expect(answerOnDatabase).toBeTruthy()
   })
 })
