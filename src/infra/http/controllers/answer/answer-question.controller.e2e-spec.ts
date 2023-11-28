@@ -39,14 +39,14 @@ describe('Answer question (E2E)', () => {
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
 
-    const attachment1 = await attachmentFactory.makePrismaAttachment()
-    const attachment2 = await attachmentFactory.makePrismaAttachment()
-
     const question = await questionFactory.makePrismaQuestion({
       authorId: user.id,
     })
 
     const questionId = question.id.toString()
+
+    const attachment1 = await attachmentFactory.makePrismaAttachment()
+    const attachment2 = await attachmentFactory.makePrismaAttachment()
 
     const response = await request(app.getHttpServer())
       .post(`/questions/${questionId}/answers`)
@@ -68,7 +68,7 @@ describe('Answer question (E2E)', () => {
 
     const attachmentsOnDatabase = await prisma.attachment.findMany({
       where: {
-        questionId: answerOnDatabase?.id,
+        answerId: answerOnDatabase?.id,
       },
     })
 

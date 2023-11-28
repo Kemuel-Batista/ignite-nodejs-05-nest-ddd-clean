@@ -97,7 +97,7 @@ describe('Edit answer (E2E)', () => {
 
     const attachmentsOnDatabase = await prisma.attachment.findMany({
       where: {
-        questionId: answerOnDatabase?.id,
+        answerId: answerOnDatabase?.id,
       },
     })
 
