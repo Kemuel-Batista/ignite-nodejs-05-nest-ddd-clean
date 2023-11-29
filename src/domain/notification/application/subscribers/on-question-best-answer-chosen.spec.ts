@@ -12,7 +12,7 @@ import { SpyInstance } from 'vitest'
 import { makeQuestion } from '../../../../../test/factories/make-question'
 import { makeAnswer } from '../../../../../test/factories/make-answer'
 import { waitFor } from '../../../../../test/utils/wait-for'
-import { OnQuestionBestAnswerChosenEvent } from './on-question-best-answer-chosen-event'
+import { OnQuestionBestAnswerChosen } from './on-question-best-answer-chosen'
 import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository'
 
@@ -53,7 +53,7 @@ describe('On Question Best Answer Chosen Event', () => {
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, 'execute')
 
-    new OnQuestionBestAnswerChosenEvent(
+    new OnQuestionBestAnswerChosen(
       inMemoryAnswersRepository,
       sendNotificationUseCase,
     )

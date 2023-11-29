@@ -2,9 +2,11 @@ import { DomainEvents } from '@/core/events/domain-events'
 import { EventHandler } from '@/core/events/event-handler'
 import { SendNotificationUseCase } from '../use-cases/send-notification'
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
-import { AnswerCommentEvent } from '@/domain/forum/enterprise/events/answer-comment-event'
+import { QuestionBestAnswerChosenEvent } from '@/domain/forum/enterprise/events/question-best-answer-chosen-event'
+import { Injectable } from '@nestjs/common'
 
-export class OnAnswerCommentEvent implements EventHandler {
+@Injectable()
+export class OnQuestionBestAnswerChosen implements EventHandler {
   constructor(
     private answersRepository: AnswersRepository,
     private sendNotification: SendNotificationUseCase,
@@ -14,25 +16,26 @@ export class OnAnswerCommentEvent implements EventHandler {
 
   setupSubscriptions(): void {
     DomainEvents.register(
-      this.sendAnswerCommentNotification.bind(this),
-      AnswerCommentEvent.name,
+      this.sendQuestionBestAnswerNotification.bind(this),
+      QuestionBestAnswerChosenEvent.name,
     )
   }
 
-  private async sendAnswerCommentNotification({
-    answerComment,
-  }: AnswerCommentEvent) {
+  private async sendQuestionBestAnswerNotification({
+    question,
+    bestAnswerId,
+  }: QuestionBestAnswerChosenEvent) {
     const answer = await this.answersRepository.findById(
-      answerComment.answerId.toString(),
+      bestAnswerId.toString(),
     )
 
     if (answer) {
       await this.sendNotification.execute({
         recipientId: answer.authorId.toString(),
-        title: `Existe um comentário para a sua resposta!`,
-        content: `A resposta que você enviou em "${answer.content
+        title: `Sua resposta foi escolhida!`,
+        content: `A resposta que você enviou em "${question.title
           .substring(0, 20)
-          .concat('...')}" tem um novo comentário!`,
+          .concat('...')}" foi escolhida pelo autor!`,
       })
     }
   }
